@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const dbURI = require('./database/dbConnect')
 const router = require('./routes/authroute')
 
 const app = express()
@@ -11,9 +12,8 @@ app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
 // database connection
-const dbURI =
-	'mongodb+srv://Patrick:zarahkelo@nodeexpressproject.myxakyz.mongodb.net/JWT-tuts?retryWrites=true&w=majority'
 mongoose.set({ strictQuery: false })
+
 mongoose
 	.connect(dbURI)
 	.then(() =>
