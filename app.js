@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const dbURI = require('./database/dbConnect')
@@ -13,11 +14,12 @@ app.set('view engine', 'ejs')
 
 // database connection
 mongoose.set({ strictQuery: false })
-
 mongoose
 	.connect(dbURI)
 	.then(() =>
-		app.listen(3000, () => console.log('started server on port 3000'))
+		app.listen(3000, () =>
+			console.log(`started server on port ${process.env.PORT}`)
+		)
 	)
 	.catch(err => console.log(err))
 
